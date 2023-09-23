@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Rename, Resize, and Upload Image</h2>
+            @if (ViewBag.Error != null)
+            {
+                <h4 style="color:red">@ViewBag.Error</h4>
+            }
+            @using (Html.BeginForm("Index", "Home",
+            FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div>Upload Image</div>
+                <input type="file" name="avatar" />
+                <input type="submit" value="upload" />
+            }
+        </div >
+        
+    </div>
+</body>
+</html>
