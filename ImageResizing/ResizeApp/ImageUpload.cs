@@ -56,7 +56,7 @@ namespace ImageResizing
                 file.SaveAs(path);
 
                 Image imgOriginal = Image.FromFile(path);
-
+                
                 //pass in whatever value you want
                 Image imgActual = Scale(imgOriginal);
                 imgOriginal.Dispose();
@@ -64,7 +64,7 @@ namespace ImageResizing
                 imgActual.Dispose();
 
                 imageResult.ImageName = fileName;
-
+                
                 return imageResult;
             }
             catch (Exception ex)
@@ -98,15 +98,15 @@ namespace ImageResizing
 
         private Image Scale(Image imgPhoto)
         {
-            float sourceWidth = imgPhoto.Width;
-            float sourceHeight = imgPhoto.Height;
-            float destHeight = 0;
-            float destWidth = 0;
+            int sourceWidth = imgPhoto.Width;
+            int sourceHeight = imgPhoto.Height;
+            int destHeight = 0;
+            int destWidth = 0;
             int sourceX = 0;
             int sourceY = 0;
             int destX = 0;
             int destY = 0;
-
+            //imgPhoto.PropertyItems.ElementAt(0x0012);
             // force resize, might distort image
             if (Width != 0 && Height != 0)
             {
@@ -116,30 +116,31 @@ namespace ImageResizing
             // change size proportially depending on width or height
             else if (Height != 0)
             {
-                destWidth = (float)(Height * sourceWidth) / sourceHeight;
+                destWidth = (int)(Height * sourceWidth) / sourceHeight;
                 destHeight = Height;
             }
             else
             {
                 destWidth = Width;
-                destHeight = (float)(sourceHeight * Width / sourceWidth);
+                destHeight = (int)(sourceHeight * Width / sourceWidth);
             }
 
             Bitmap bmPhoto = new Bitmap((int)destWidth, (int)destHeight,
                                         PixelFormat.Format32bppPArgb);
-            bmPhoto.SetResolution(imgPhoto.HorizontalResolution, imgPhoto.VerticalResolution);
+            bmPhoto.SetResolution(96, 96);
 
             Graphics grPhoto = Graphics.FromImage(bmPhoto);
-            grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
+            grPhoto.InterpolationMode = InterpolationMode.High;
+            
             grPhoto.DrawImage(imgPhoto,
                 new Rectangle(destX, destY, (int)destWidth, (int)destHeight),
-                new Rectangle(sourceX, sourceY, (int)sourceWidth, (int)sourceHeight),
-                GraphicsUnit.Pixel);
+                new Rectangle(sourceX, sourceY, (int)sourceWidth, (int)sourceHeight), GraphicsUnit.Pixel);
 
             grPhoto.Dispose();
 
             return bmPhoto;
         }
+      
     }
+
 }

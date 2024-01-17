@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Imaging, Version=23.8.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Imaging.23.8.0\lib\net40\Aspose.Imaging.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -150,6 +153,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResizeApp\ImageResualt.cs" />
     <Compile Include="ResizeApp\ImageUpload.cs" />
+    <Compile Include="ResizeApp\OrientedImg.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -168,6 +172,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Items\" />
+    <Folder Include="Images\OriginalImages\" />
+    <Folder Include="Images\ResizedImages\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

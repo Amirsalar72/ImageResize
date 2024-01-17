@@ -22,11 +22,15 @@
             FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div>Upload Image</div>
-                <input type="file" name="avatar" />
+                <input type="file" name="file" />
                 <input type="submit" value="upload" />
             }
         </div >
-        
+        <p>@ViewBag.filename</p>
+       
     </div>
+
+
+
 </body>
 </html>
